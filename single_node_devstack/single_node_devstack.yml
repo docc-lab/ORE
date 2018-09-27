@@ -12,8 +12,8 @@ resolv_conf:
   domain:
     - moclocal
   options:
-    - rotate: true
-    - timeout: 1
+    rotate: true
+    timeout: 1
 package_upgrade: true
 packages:
   - git
@@ -26,12 +26,12 @@ package_reboot_if_required: true
 users:
   - default
   - name: stack
+    sudo: ALL=(ALL) NOPASSWD:ALL
     homedir: /opt/stack
     shell: /bin/bash
-    sudo: ALL=(ALL) NOPASSWD:ALL
 runcmd:
-  - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
-  - [su, -c, 'svn export --force https://github.com/docc-lab/ORE/trunk/patch /opt/stack/devstack/', stack]
-  - 'sudo cp -r /home/centos/.ssh /opt/stack/'
-  - 'sudo chown -R stack /opt/stack/.ssh'
-  - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then\n        . /opt/stack/devstack/openrc admin admin\nfi" >> /opt/stack/.bashrc'
+ - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
+ - [su, -c, 'svn export --force https://github.com/docc-lab/ORE/trunk/patch /opt/stack/devstack/', stack]
+ - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then . /opt/stack/devstack/openrc admin admin; fi" >> /opt/stack/.bashrc'
+ - 'sudo cp -R /home/centos/.ssh /opt/stack/'
+ - 'sudo chown -R stack /opt/stack/.ssh'
