@@ -61,11 +61,12 @@ Workflow for testing changes to Openstack source code:
 2. Install DevStack `./stack.sh`
 3. Make changes to your openstack source code in the repo
 4. `git pull` changes into the directory on DevStack machine
-5. Restart DevStack: `./unstack.sh` and `./stack.sh`
+4.1. Or directly change the files in `/opt/stack/$COMPONENT`
+5. Re-install the changed package using `pip`.
+6. `sudo systemctl restart devstack@*`.
 
-
-Another option is to edit the code on the machine itself. This may be advantageous for testing smaller changes if you do not want to go through the git workflow. Source code for openstack services is located in `/opt/stack/$SERVICE`. After making a change, restart all openstack services by running:
-`sudo systemctl restart "devstack@*"`
+If you feel like running `./unstack.sh` and `./stack.sh` again, just create a new VM
+and delete the older one instead.
 
 You can also restart individual services after making a change with similar syntax. More info: https://docs.openstack.org/devstack/latest/development.html
 
