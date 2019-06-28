@@ -1,19 +1,8 @@
 #cloud-config
 cloud_config_modules:
-  - resolv_conf
   - users_groups
   - package_update_upgrade_install
   - runcmd
-manage_resolv_conf: true
-resolv_conf:
-  nameservers: ['8.8.4.4', '8.8.8.8']
-  searchdomains:
-    - moclocal
-  domain:
-    - moclocal
-  options:
-    rotate: true
-    timeout: 1
 package_upgrade: true
 packages:
   - git
@@ -30,7 +19,7 @@ users:
     homedir: /opt/stack
     shell: /bin/bash
 runcmd:
- - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
+ - [su, -c, "git clone -b stable/stein https://opendev.org/openstack/devstack.git /opt/stack/devstack", stack]
  - [su, -c, 'svn export --force https://github.com/docc-lab/ORE/trunk/patch /opt/stack/devstack/', stack]
  - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then . /opt/stack/devstack/openrc admin admin; fi" >> /opt/stack/.bashrc'
  - 'sudo cp -R /home/centos/.ssh /opt/stack/'
