@@ -1,0 +1,25 @@
+#cloud-config
+cloud_config_modules:
+  - users_groups
+  - package_update_upgrade_install
+  - runcmd
+package_upgrade: true
+packages:
+  - git
+  - gcc
+  - wget
+  - vim
+  - tmux
+  - svn
+package_reboot_if_required: true
+users:
+  - default
+  - name: stack
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    homedir: /opt/stack
+    shell: /bin/bash
+runcmd:
+ - [su, -c, "git clone -b stable/stein https://opendev.org/openstack/devstack.git /opt/stack/devstack", stack]
+ - [su, -c, 'svn export --force https://github.com/docc-lab/ORE/trunk/patch /opt/stack/devstack/', stack]
+ - 'sudo cp -R /home/fedora/.ssh /opt/stack/'
+ - 'sudo chown -R stack /opt/stack/.ssh'
