@@ -26,4 +26,4 @@ runcmd:
  - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then . /opt/stack/devstack/openrc admin admin; fi" >> /opt/stack/.bashrc'
  - 'sudo cp -R /home/centos/.ssh /opt/stack/'
  - 'sudo chown -R stack /opt/stack/.ssh'
- - [su, -c, 'python3 -m venv /opt/stack/.local/pythia', stack]
+ - [su, -c, '/opt/rh/rh-python36/root/usr/bin/python3 -m venv /opt/stack/.local/pythia', stack]
