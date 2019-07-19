@@ -12,7 +12,6 @@ packages:
   - tmux
   - svn
   - centos-release-scl
-  - rh-python36
 package_reboot_if_required: true
 users:
   - default
@@ -26,4 +25,5 @@ runcmd:
  - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then . /opt/stack/devstack/openrc admin admin; fi" >> /opt/stack/.bashrc'
  - 'sudo cp -R /home/centos/.ssh /opt/stack/'
  - 'sudo chown -R stack /opt/stack/.ssh'
+ - 'sudo yum install -y rh-python36'
  - [su, -c, '/opt/rh/rh-python36/root/usr/bin/python3 -m venv /opt/stack/.local/pythia', stack]
