@@ -8,9 +8,10 @@ packages:
   - git
   - gcc
   - wget
-  - vim
+  - neovim
   - tmux
   - svn
+  - python3-devel
 package_reboot_if_required: true
 users:
   - default
@@ -23,3 +24,4 @@ runcmd:
  - [su, -c, 'svn export --force https://github.com/docc-lab/ORE/trunk/patch /opt/stack/devstack/', stack]
  - 'sudo cp -R /home/fedora/.ssh /opt/stack/'
  - 'sudo chown -R stack /opt/stack/.ssh'
+ - 'sudo python3 -m pip install python-memcached'
