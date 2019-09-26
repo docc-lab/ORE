@@ -12,6 +12,15 @@ packages:
   - tmux
   - svn
   - python3-devel
+  - vim
+  - qt3-devel 
+  - libXi-devel 
+  - gcc-c++
+  - fedpkg 
+  - fedora-packager 
+  - rpmdevtools 
+  - ncurses-devel 
+  - pesign
 package_reboot_if_required: true
 users:
   - default
